@@ -1,0 +1,73 @@
+cidade arad
+cidade bucharest
+cidade craiova
+cidade dobreta
+cidade eforie
+cidade fagaras
+cidade giurgiu
+cidade hirsova
+cidade iasi
+cidade lugoj
+cidade mehadia
+cidade neamt
+cidade oradea
+cidade pitesti
+cidade rimnicu_vilcea
+cidade sibiu
+cidade timisoara
+cidade urziceni
+cidade vaslui
+cidade zerind
+
+estrada oradea zerind 71
+estrada oradea sibiu 151
+
+estrada zerind arad 75
+
+estrada arad sibiu 140
+estrada arad timisoara 118
+
+estrada timisoara lugoj 111
+estrada lugoj mehadia 70
+estrada mehadia dobreta 75
+estrada dobreta craiova 120
+
+estrada craiova rimnicu_vilcea 146
+estrada craiova pitesti 138
+
+estrada sibiu rimnicu_vilcea 80
+estrada sibiu fagaras 99
+
+estrada rimnicu_vilcea pitesti 97
+estrada pitesti bucharest 101
+estrada bucharest fagaras 211
+estrada bucharest urziceni 85
+
+estrada urziceni vaslui 142
+estrada vaslui iasi 92
+estrada iasi neamt 87
+
+estrada urziceni hirsova 98
+estrada hirsova eforie 86
+
+estimativa arad 366
+estimativa bucharest 0
+estimativa craiova 160
+estimativa dobreta 242
+estimativa eforie 161
+estimativa fagaras 178
+estimativa giurgiu 77
+estimativa hirsova 151
+estimativa iasi 226
+estimativa lugoj 244
+estimativa mehadia 241
+estimativa neamt 234
+estimativa oradea 380
+estimativa pitesti 98
+estimativa rimnicu_vilcea 193
+estimativa sibiu 253
+estimativa timisoara 329
+estimativa urziceni 80
+estimativa vaslui 199
+estimativa zerind 374
+
