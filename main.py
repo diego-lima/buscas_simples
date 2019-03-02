@@ -106,3 +106,7 @@ if __name__ == "__main__":
     print("---\n--- A-STAR (A*)\n---")
     retorno = astar(inicio, leitor.destino)
     print("%s (custo %.0f)" % (retorno, retorno.custo))
+
+    print("---\n--- DIJKSTRA\n---")
+    retorno = dijkstra(inicio, leitor.cidades)
+    print("%s (custo %.0f)" % (retorno[leitor.destino], retorno[leitor.destino].custo))

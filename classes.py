@@ -6,23 +6,39 @@ class FilaPrioridade:
     """
     Essa classe serve apenas para encapsular a implementação nativa python heapq.
     Isso porque a heapq é implementada de um jeito muito tosco.
+    Foi estendida para aceitar dicionários como input, onde o valor de cada chave é seu peso.
     """
     heap = None
 
-    def __init__(self, heap: list):
-        # Vamos copiar o input para não mexer nele
-        self.heap = list()
-        self.heap.extend(heap)
-        heapq.heapify(self.heap)
+    def __init__(self, heap: Union[list, dict]):
+
+        if isinstance(heap, list):
+            # Vamos copiar o input para não mexer nele
+            self.heap = list()
+            self.heap.extend(heap)
+            heapq.heapify(self.heap)
+        elif isinstance(heap, dict):
+            # Montamos uma lista a partir do dicionário passado
+            # Fazemos heap[x].real para pegar o custo se for um objeto Trilha
+            self.heap = [[heap[x].real, x] for x in heap]
+            heapq.heapify(self.heap)
 
     def add(self, item):
         heapq.heappush(self.heap, item)
 
     def pop(self):
+        """
+        Retorna o objeto de menor valor.
+        Se você incializou com algo no formato
+        [[1, 'a'] [2, 'b']]
+        O retorno será algo no formato
+        [1, 'a']
+        """
         if len(self.heap):
             return heapq.heappop(self.heap)
         else:
             return None
+
 
 """
 Tipos de implementação. Se MANHATTAN, as estimativas (heurística) são feitas
@@ -116,6 +132,9 @@ class Cidade:
         elif isinstance(other, Cidade):
             return other.nome == self.nome
 
+    def __lt__(self, other):
+        return True
+
 
 class Estrada:
     """Essa classe corresponde à aresta do grafo.
@@ -173,6 +192,15 @@ class Trilha:
         if self.anterior:
             return "%s -> %s" % (self.anterior, self.cidade)
         return str(self.cidade)
+
+    @property
+    def real(self):
+        """Serve para poder ser tratado como um tipo numérico.
+        Por exemplo:
+        a = 100
+        a.real # 100
+        .real retorna a parte real de um número"""
+        return self.custo
 
 
 if __name__ == "__main__":

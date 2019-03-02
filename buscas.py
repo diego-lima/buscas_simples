@@ -1,5 +1,6 @@
 from classes import *
 from collections import deque as fila
+from math import inf
 
 
 def breadth_first(origem: Cidade, destino: Cidade):
@@ -228,8 +229,37 @@ def astar(origem, destino):
         return None
 
     return visitar(origem)
-    
 
+
+def dijkstra(origem, cidades):
+    """
+    Realiza Dijkstra para retornar o melhor caminho até cada uma de todas as cidades.
+    """
+
+    """
+    Abaixo, montamos um dicionário no formato
+    { origem: 1, cidade1: inf, cidade2: inf, ... }
+    onde os valores são trilhas com custo total 1, se for a origem, e infinito, se não for
+    """
+    trilhas = {x: Trilha(x, custo=0) if x == origem else Trilha(x, custo=inf) for x in cidades}
+    nao_acomodados = set([x for x in cidades])
+
+    while nao_acomodados:
+        # Precisamos pegar apenas os não acomodados, filtrando:
+        filtrados = {k: trilhas[k] for k in trilhas if k in nao_acomodados}
+        # Na linha abaixo, eu monto uma heap com o estado atual das trilhas, e pego a próxima de menor valor
+        custo_atual, cidade_atual = FilaPrioridade(filtrados).pop()
+        nao_acomodados.remove(cidade_atual)
+
+        for vizinho in cidade_atual.vizinhos_com_custo:
+            novo_custo = custo_atual + vizinho[0]
+            if novo_custo < trilhas[vizinho[1]].custo:
+                # Atualizamos trilhas, pegando a trilha até a cidade atual e acrescentando o vizinho
+                trilhas[vizinho[1]] = Trilha(vizinho[1], trilhas[cidade_atual], novo_custo)
+
+    return trilhas
+
+    
 if __name__ == "__main__":
     A = Cidade('A', (0, 0), implementacao="manhattan")    # C -- D
     B = Cidade('B', (0, 15), implementacao="manhattan")   # | \   |
